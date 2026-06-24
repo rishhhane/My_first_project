@@ -16,7 +16,7 @@ from routes.patient import patient_bp
 from routes.upload import upload_bp       
 
 def create_app():
-    static_folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend', 'dist'))
+    static_folder_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'dist'))
     app = Flask(__name__, static_folder=static_folder_path, static_url_path='/')
     app.config.from_object(Config)
     
