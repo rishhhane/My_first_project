@@ -1,0 +1,1362 @@
+/* =======================================================
+   🔒 SECURE ISOLATED PATIENT LOGIN & REGISTER & DASHBOARD STYLES
+   ======================================================= */
+
+/* --- LOGIN VIEW --- */
+.login-view-container, .auth-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-height: calc(100vh - 120px) !important;
+  padding: 40px 20px !important;
+  box-sizing: border-box !important;
+  background-color: #ffffff !important;
+}
+
+.login-view-container .login-card,
+.auth-container .auth-card,
+.login-card,
+.auth-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  padding: 32px !important;
+  width: 100% !important;
+  max-width: 460px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  z-index: 10 !important;
+  box-shadow: 0 0 50px rgba(22, 78, 99, 0.18), 0 0 10px rgba(22, 78, 99, 0.10) !important;
+}
+.login-view-container h2, .auth-card h2 {
+  color: #0f172a !important;
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  margin-bottom: 4px !important;
+  margin-top: 0 !important;
+}
+
+.login-view-container .login-sub, .auth-card .login-sub, .login-sub {
+  font-size: 14px !important;
+  color: #64748b !important;
+  margin: 0 0 28px 0 !important;
+}
+
+.form-field.floating-group {
+  position: relative !important;
+  width: 100% !important;
+  margin-bottom: 20px !important;
+}
+
+.form-field.floating-group input {
+  width: 100% !important;
+  height: 52px !important;
+  padding: 14px 16px !important;
+  font-size: 14px !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+}
+
+.form-field.floating-group input:focus {
+  border-color: #06b6d4 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.12) !important;
+}
+
+.form-field.floating-group label {
+  position: absolute !important;
+  left: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: transparent !important;
+  pointer-events: none !important;
+  font-size: 14px !important;
+  color: #94a3b8 !important;
+  font-weight: 500 !important;
+  transition: all 0.25s ease !important;
+}
+
+.form-field.floating-group input:focus ~ label,
+.form-field.floating-group input:not(:placeholder-shown) ~ label {
+  top: 0 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: #06b6d4 !important;
+  background: #ffffff !important;
+  padding: 0 6px !important;
+}
+
+.login-view-container .btn-primary, .auth-card .btn-primary, .btn-primary {
+  width: 100% !important;
+  background: #06b6d4 !important;
+  color: white !important;
+  border: none !important;
+  padding: 14px !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: background 0.15s ease !important;
+  margin-top: 10px !important;
+  box-sizing: border-box !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.login-view-container .btn-primary:hover, .auth-card .btn-primary:hover, .btn-primary:hover {
+  background: #0891b2 !important;
+}
+
+.login-footer-text {
+  text-align: center !important;
+  font-size: 13.5px !important;
+  color: #64748b !important;
+  margin-top: 20px !important;
+}
+
+.login-footer-text a {
+  color: #06b6d4 !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+
+.login-footer-text a:hover {
+  text-decoration: underline !important;
+}
+
+/* --- REGISTER VIEW --- */
+.register-view-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px);
+  padding: 40px 20px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
+.register-view-container .register-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 32px;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 0 50px rgba(22, 78, 99, 0.18), 0 0 10px rgba(22, 78, 99, 0.10) !important;
+}
+
+.register-view-container h2 {
+  color: #0f172a;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.register-view-container .register-sub {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0 0 24px 0;
+}
+
+.register-view-container .form-field.floating-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.register-view-container .form-field.floating-group input {
+  width: 100%;
+  height: 50px;
+  padding: 14px 16px;
+  font-size: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  color: #0f172a;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.register-view-container .form-field.floating-group input:focus {
+  border-color: #06b6d4;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.12);
+}
+
+.register-view-container .form-field.floating-group label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  pointer-events: none;
+  font-size: 14px;
+  color: #94a3b8;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.register-view-container .form-field.floating-group input:focus ~ label,
+.register-view-container .form-field.floating-group input:not(:placeholder-shown) ~ label {
+  top: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #06b6d4;
+  background: #ffffff;
+  padding: 0 6px;
+}
+
+.register-view-container .input-row {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 0px;
+  align-items: flex-start;
+}
+
+.register-view-container .input-row .form-field.floating-group {
+  flex: 1;
+}
+
+.register-view-container .input-row .form-field.floating-group.age-field-box {
+  flex: 0 0 75px !important; 
+  width: 75px !important;
+  min-width: 75px !important;
+}
+
+.register-view-container .input-row .form-field.floating-group.age-field-box input {
+  text-align: center;
+  padding: 14px 8px !important; 
+}
+
+.register-view-container .input-row .form-field.floating-group.age-field-box input:focus ~ label,
+.register-view-container .input-row .form-field.floating-group.age-field-box input:not(:placeholder-shown) ~ label {
+  left: 50%;
+  transform: translate(-50%, -50%); 
+}
+
+.phone-input-row-container {
+  display: flex !important;
+  flex-direction: row !important;
+  flex: 1 !important;
+  width: auto !important;
+  align-items: center !important;
+  margin-bottom: 20px;
+  background-color: #f8fafc !important; 
+  border: 1px solid #cbd5e1 !important;   
+  border-radius: 8px !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease;
+  overflow: hidden;                       
+}
+
+.phone-input-row-container:focus-within {
+  border-color: #06b6d4 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.12) !important;
+}
+
+.country-code-prefix-box {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  height: 48px !important;
+  padding-left: 12px !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.country-code-prefix-box select {
+  padding: 0 20px 0 4px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #1e293b !important;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  cursor: pointer !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+}
+
+.country-code-prefix-box .mini-arrow {
+  position: absolute !important;
+  right: 4px !important;
+  font-size: 8px !important;
+  color: #64748b !important;
+  pointer-events: none !important;
+}
+
+.phone-main-number-box {
+  position: relative !important;
+  flex: 1 !important;
+  margin-bottom: 0 !important;
+  background: transparent !important; 
+  box-shadow: none !important;        
+  border: none !important;            
+}
+
+.phone-main-number-box input {
+  width: 100% !important;
+  height: 48px !important;
+  padding: 14px 12px !important;
+  font-size: 14px !important;
+  background: transparent !important; 
+  border: none !important;            
+  border-radius: 0 !important;        
+  color: #0f172a !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  box-shadow: none !important;        
+}
+
+/* Form switch sliding transitions */
+.portal-form-slider-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.portal-form-slider-track {
+  display: flex;
+  width: 200%;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.portal-form-slide {
+  width: 50%;
+  flex-shrink: 0;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.custom-dropdown-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.custom-dropdown-trigger {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 14px;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  color: #94a3b8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  height: 50px;
+  transition: all 0.2s ease;
+}
+
+.custom-dropdown-trigger.has-value {
+  color: #0f172a;
+  background-color: #ffffff;
+  border-color: #06b6d4;
+}
+
+.dropdown-arrow-icon {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.custom-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin-top: 4px;
+  padding: 0;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.custom-dropdown-option {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #334155;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.custom-dropdown-option:hover {
+  background-color: #f1f5f9;
+}
+
+.custom-dropdown-option.active {
+  background-color: #ecfeff;
+  color: #0891b2;
+  font-weight: 600;
+}
+
+.register-view-container .btn-primary {
+  width: 100%;
+  background: #06b6d4;
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  margin-top: 8px;
+}
+
+.register-view-container .btn-primary:hover:not(:disabled) {
+  background: #0891b2;
+}
+
+.register-view-container .avatar-section {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #f8fafc !important;
+  border: 1px dashed #cbd5e1 !important;
+  border-radius: 12px !important;
+  padding: 24px !important;
+  margin-bottom: 24px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.register-view-container .avatar-preview-box {
+  width: 110px !important;
+  height: 110px !important;
+  border-radius: 50% !important;
+  background-color: #e2e8f0 !important;
+  border: 3px solid #ffffff !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  margin-bottom: 16px !important;
+  position: relative !important;
+}
+
+.register-view-container .avatar-preview-box img,
+.register-view-container .avatar-preview-box video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+}
+
+.register-view-container .avatar-placeholder-text {
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  color: #64748b !important;
+  text-align: center !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register-view-container .btn-camera-trigger {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+  padding: 8px 16px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.15s ease !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.register-view-container .btn-camera-trigger:hover {
+  background: #f8fafc !important;
+  border-color: #94a3b8 !important;
+}
+
+@media (max-width: 480px) {
+  .register-view-container .input-row {
+    flex-direction: column;
+    gap: 0px;
+  }
+}
+
+/* --- DASHBOARD VIEW --- */
+.dashboard-view-container {
+  width: 100%; 
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Force light mode styles for dashboard container */
+.patient-dashboard-light-root,
+.patient-dashboard-light-root .dashboard-view-container {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.welcome-banner-card {
+  background: linear-gradient(135deg, #164e63 0%, #0891b2 100%);
+  color: #ffffff;
+  padding: 24px 32px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(22, 78, 99, 0.15);
+}
+
+.welcome-banner-card h2 {
+  margin: 0 0 6px 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff !important;
+}
+
+.welcome-banner-card p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+  color: #ecfeff !important;
+}
+
+.appointment-single-row-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.booking-wizard-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 28px;
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 0 50px rgba(22, 78, 99, 0.15), 0 0 10px rgba(22, 78, 99, 0.08) !important;
+  color: #0f172a;
+}
+
+.booking-wizard-card h3 {
+  margin: 0 0 4px 0;
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.wizard-sub {
+  margin: 0 0 24px 0;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.dynamic-dropdown-group {
+  position: relative;
+  margin-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.custom-portal-select-input {
+  width: 100%;
+  max-width: calc(100vw - 80px) !important; 
+  padding: 10px 36px 10px 14px; 
+  font-size: 14px;
+  background-color: #ffffff;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 8px;
+  color: #0f172a;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  height: 42px;
+}
+
+.custom-portal-select-input option {
+  background-color: #ffffff;
+  color: #0f172a;
+  font-size: 14px;
+  max-width: calc(100vw - 120px) !important;
+  width: 100% !important;
+  box-sizing: border-box;
+  white-space: normal; 
+  overflow: hidden;
+}
+
+.floating-select-label {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #ffffff;
+  padding: 0 6px;
+  color: #94a3b8;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.custom-portal-select-input:focus ~ .floating-select-label,
+.custom-portal-select-input:valid ~ .floating-select-label,
+.custom-portal-select-input:not([value=""]) ~ .floating-select-label {
+  top: 0;
+  font-size: 11px;
+  color: #06b6d4;
+  font-weight: 600;
+}
+.custom-portal-select-input:focus {
+  border-color: #06b6d4;
+  box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1);
+}
+
+.select-arrow-indicator {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.field-disabled .custom-portal-select-input {
+  background-color: #f1f5f9;
+  border-color: #e2e8f0;
+  cursor: not-allowed;
+}
+
+.field-disabled .floating-select-label {
+  color: #cbd5e1;
+  background-color: transparent;
+}
+
+.visit-history-section-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 28px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 0 50px rgba(22, 78, 99, 0.15), 0 0 10px rgba(22, 78, 99, 0.08) !important;
+  color: #0f172a;
+}
+
+.visit-history-section-card h3 {
+  margin: 0 0 4px 0;
+  color: #0f172a;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.history-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.minimal-history-item-block {
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.minimal-history-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  gap: 16px;
+}
+
+.history-meta-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.table-txt-bold {
+  font-weight: 700;
+  color: #0f172a;
+  font-family: monospace;
+}
+
+.history-date-sub {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.table-doctor-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+}
+
+.table-dept-sub {
+  font-size: 12px;
+  color: #0891b2;
+  font-weight: 600;
+}
+
+.btn-view-details {
+  background: transparent;
+  color: #06b6d4;
+  border: 1px solid #06b6d4;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-view-details:hover {
+  background: rgba(6, 182, 212, 0.05);
+}
+
+.btn-view-details.active {
+  background: #06b6d4;
+  color: #ffffff;
+}
+
+.expanded-details-drawer {
+  background-color: #f8fafc;
+  border-top: 1px solid #f1f5f9;
+  padding: 16px 20px;
+  animation: slideDown 0.2s ease-out;
+}
+
+.drawer-inner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.drawer-info-group h5 {
+  margin: 0 0 6px 0;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.drawer-info-group p {
+  margin: 0;
+  font-size: 13.5px;
+  color: #334155;
+  text-align: left;
+}
+
+.prescription-pill {
+  background-color: #f0fdfa;
+  border: 1px solid #ccfbf1;
+  border-radius: 6px;
+  padding: 6px 12px;
+  color: #0f766e;
+  font-weight: 500;
+  display: inline-block;
+  text-align: left;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tab indicator override */
+.light-tab-nav {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 24px;
+  border: 1px solid #e2e8f0;
+}
+
+.light-tab-btn {
+  flex: 1;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  color: #64748b;
+}
+
+.light-tab-btn.active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+}
+
+/* --- PHONE FORMAT LAYOUT FOR PATIENT PORTAL --- */
+.patient-portal-phone-layout-wrapper {
+  background-color: #f1f5f9;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.patient-portal-phone-layout-content {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 480px; /* Enforces native phone format on desktop & mobile */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  padding: 32px 24px;
+}
+
+.patient-portal-phone-layout-content.login-mode {
+  justify-content: center;
+}
+
+.patient-portal-phone-layout-content.register-mode {
+  justify-content: flex-start;
+}
+
+/* Bottom Navigation Bar for Phone Format */
+.patient-portal-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 64px;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.06);
+}
+
+.patient-portal-bottom-nav button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  gap: 4px;
+  height: 100%;
+  transition: all 0.2s ease;
+}
+
+.patient-portal-bottom-nav button:hover {
+  color: #0891b2;
+}
+
+.patient-portal-bottom-nav button.active {
+  color: #06b6d4;
+}
+
+/* Reset margins inside phone dashboard container */
+.patient-portal-phone-layout-content .dashboard-view-container,
+.patient-dashboard-container .dashboard-view-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 16px;
+  gap: 16px;
+}
+
+.btn-logout-header {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  opacity: 0.8;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+}
+
+.btn-logout-header:hover {
+  opacity: 1;
+}
+
+/* --- PREMIUM CHAMBER CALLOUT ALERTS --- */
+.live-callout-glow-banner {
+  background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%) !important;
+  color: #ffffff !important;
+  padding: 16px 20px !important;
+  border-radius: 12px !important;
+  border: 2px solid #22d3ee !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  margin-bottom: 8px !important;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.4) !important;
+  animation: calloutPulseGlow 2s infinite ease-in-out !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+}
+
+.live-callout-icon {
+  font-size: 24px !important;
+  animation: calloutShake 1.5s infinite ease-in-out !important;
+  display: inline-block !important;
+}
+
+@keyframes calloutPulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.3), inset 0 0 8px rgba(255, 255, 255, 0.2);
+    border-color: #22d3ee;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.75), inset 0 0 12px rgba(255, 255, 255, 0.4);
+    border-color: #e0f2fe;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes calloutShake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  75% { transform: rotate(15deg); }
+}
+
+.admin-dept-form-row {
+  display: flex !important;
+  gap: 16px !important;
+  align-items: center !important;
+  flex-wrap: wrap !important;
+  margin-top: 16px !important;
+  margin-bottom: 24px !important;
+}
+
+.admin-dept-form-row .form-field.floating-group {
+  margin-bottom: 0 !important;
+  flex: 1 !important;
+  min-width: 240px !important;
+}
+
+.admin-dept-form-row .btn-primary {
+  margin-top: 0 !important;
+  height: 52px !important;
+  white-space: nowrap !important;
+  width: auto !important;
+  max-width: 200px !important;
+  padding: 0 24px !important;
+  background: #00bcd4 !important; /* Teal button as shown in the image */
+}
+
+.admin-dept-form-row .btn-primary:hover {
+  background: #00acc1 !important;
+}
+
+/* Light Scrollbar for wizard cards and modals to remove the black bar */
+.booking-wizard-card::-webkit-scrollbar {
+  width: 8px !important;
+  height: 8px !important;
+}
+.booking-wizard-card::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+  border-radius: 0 12px 12px 0 !important;
+}
+.booking-wizard-card::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+  border-radius: 4px !important;
+}
+.booking-wizard-card::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8 !important;
+}
+
+/* --- RESPONSIVE DASHBOARD LAYOUT & UTILITIES --- */
+
+/* Wrapper and Container */
+.patient-dashboard-wrapper {
+  background-color: #f8fafc;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.patient-dashboard-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  padding-bottom: 76px; /* space for mobile bottom nav bar */
+}
+
+@media (min-width: 768px) {
+  .patient-dashboard-container {
+    max-width: 1100px;
+    min-height: 100vh;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05), 0 2px 8px rgba(15, 23, 42, 0.03);
+    padding-bottom: 24px; /* remove mobile bottom nav space */
+  }
+}
+
+/* Header Styling */
+.patient-dashboard-header {
+  background: #164e63;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.patient-desktop-nav-tabs {
+  display: none;
+}
+
+.patient-dashboard-header .btn-logout-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.patient-dashboard-header .btn-logout-header .logout-text {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .patient-desktop-nav-tabs {
+    display: flex;
+    gap: 8px;
+  }
+
+  .patient-desktop-nav-tabs button {
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .patient-desktop-nav-tabs button:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .patient-desktop-nav-tabs button.active {
+    color: #ffffff;
+    background: #0891b2;
+  }
+
+  .patient-dashboard-header .btn-logout-header .logout-text {
+    display: inline;
+    margin-left: 4px;
+  }
+}
+
+/* Home Layout and Grid */
+.patient-dashboard-home-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.patient-dashboard-home-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .patient-dashboard-home-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 24px;
+    align-items: start;
+  }
+}
+
+/* Prescriptions Grid */
+.prescriptions-list-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .prescriptions-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+}
+
+/* Profile Grid */
+.profile-editor-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .profile-editor-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+}
+
+/* Hide Bottom Nav on Desktop */
+@media (min-width: 768px) {
+  .patient-portal-bottom-nav {
+    display: none !important;
+  }
+}
+
+/* Enhancing Mobile Login/Register Onboarding Premium Look on Desktop */
+@media (min-width: 600px) {
+  .patient-portal-phone-layout-content {
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    border: 1px solid #e2e8f0;
+    margin: 40px auto;
+    min-height: auto;
+    height: auto;
+  }
+}
+
+
+/* =======================================================
+   🏥 SIMPLE & SLEEK INSTITUTIONAL OVERRIDES (ETLAB / NIC PORTAL STYLE)
+   ======================================================= */
+
+/* Force all view wrappers to have a clean, light background */
+.patient-dashboard-wrapper, .app-container, .patient-portal-phone-layout-wrapper {
+  background-color: #f1f5f9 !important;
+}
+
+.login-view-container, .auth-container, .register-view-container {
+  background-color: #f1f5f9 !important;
+}
+
+/* Simplify Card styling: Flat panels with thin gray borders, no heavy shadows */
+.login-card,
+.auth-card,
+.register-card,
+.booking-wizard-card,
+.visit-history-section-card,
+.glass-card {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Remove hover scale/effects */
+.login-card:hover,
+.auth-card:hover,
+.booking-wizard-card:hover,
+.visit-history-section-card:hover,
+.glass-card:hover {
+  transform: none !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Navigation Headers: ETLAB & NIC Portal Royal Deep Navy Blue */
+header, .patient-dashboard-header, .patient-dashboard-header-inner {
+  background: #0f2c59 !important;
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06) !important;
+}
+
+.btn-logout-header {
+  border-radius: 4px !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  font-weight: 500 !important;
+}
+.btn-logout-header:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Clean up Banner style: No heavy gradients, just solid Deep Navy Blue */
+.welcome-banner-card {
+  background: #0f2c59 !important;
+  box-shadow: none !important;
+  border-radius: 6px !important;
+  border: 1px solid #0a1f3d !important;
+}
+
+.live-callout-glow-banner {
+  background: #f0fdf4 !important;
+  border: 1px solid #bbf7d0 !important;
+  color: #166534 !important;
+  box-shadow: none !important;
+  border-radius: 6px !important;
+  animation: none !important;
+}
+
+.live-callout-glow-banner strong {
+  color: #166534 !important;
+}
+
+/* Buttons: Flat with simple hover states */
+.btn-primary, .login-view-container .btn-primary, .auth-card .btn-primary, .register-view-container .btn-primary {
+  background: #0f2c59 !important;
+  color: #ffffff !important;
+  border-radius: 4px !important;
+  border: none !important;
+  font-weight: 600 !important;
+  box-shadow: none !important;
+}
+.btn-primary:hover, .login-view-container .btn-primary:hover, .auth-card .btn-primary:hover, .register-view-container .btn-primary:hover {
+  background: #1e40af !important;
+}
+
+.btn-secondary {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+}
+.btn-secondary:hover {
+  background: #f1f5f9 !important;
+  border-color: #94a3b8 !important;
+}
+
+.btn-view-details {
+  background: #ffffff !important;
+  color: #0284c7 !important;
+  border: 1px solid #0284c7 !important;
+  border-radius: 4px !important;
+  font-weight: 600 !important;
+}
+.btn-view-details:hover {
+  background: #f0f9ff !important;
+}
+
+/* Inputs & Form Fields: Clean light backgrounds, thin gray borders, no heavy shadows */
+.form-field.floating-group input {
+  background-color: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+}
+.form-field.floating-group input:focus {
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15) !important;
+}
+.form-field.floating-group input:focus ~ label,
+.form-field.floating-group input:not(:placeholder-shown) ~ label {
+  color: #0284c7 !important;
+}
+
+.custom-portal-select-input {
+  background-color: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  color: #0f172a !important;
+}
+.custom-portal-select-input:focus {
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.15) !important;
+}
+.custom-portal-select-input:focus ~ .floating-select-label,
+.custom-portal-select-input:valid ~ .floating-select-label,
+.custom-portal-select-input:not([value=""]) ~ .floating-select-label {
+  color: #0284c7 !important;
+}
+
+/* Table and List elements */
+.table-dept-sub {
+  color: #0284c7 !important;
+}
+
+.minimal-history-item-block {
+  border: 1px solid #cbd5e1 !important;
+}
+.minimal-history-item-block:hover {
+  background-color: #f8fafc !important;
+}
+
+/* Bottom Nav bar overrides (for mobile/tablet layouts) */
+.patient-portal-bottom-nav {
+  background-color: #ffffff !important;
+  border-top: 1px solid #cbd5e1 !important;
+}
+.patient-portal-bottom-nav button {
+  color: #64748b !important;
+}
+.patient-portal-bottom-nav button.active {
+  color: #0284c7 !important;
+}
