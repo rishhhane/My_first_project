@@ -59,7 +59,7 @@ class AuthService:
                     elif "webp" in header:
                         ext = "webp"
                     
-                    upload_folder = os.path.join('static', 'uploads', 'avatars')
+                    upload_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'uploads', 'avatars'))
                     if not os.path.exists(upload_folder):
                         os.makedirs(upload_folder, exist_ok=True)
                         

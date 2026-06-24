@@ -371,6 +371,27 @@ export default function DoctorDashboard({ onLogout }) {
           </div>
         </div>
 
+        {/* General Queue Summary Breakdown */}
+        {queueSnapshot && (
+          <div style={{ marginBottom: '24px' }}>
+            <h4 style={{ color: '#0f172a', fontSize: '1rem', marginBottom: '12px', fontWeight: 700 }}>Today's Queue Summary</h4>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '12px' }}>
+              <div style={{ padding: '12px 16px', background: '#e0f2fe', border: '1px solid #bae6fd', borderRadius: '8px', textAlign: 'center' }}>
+                <p style={{ fontSize: '0.75rem', color: '#0369a1', textTransform: 'uppercase', margin: 0, fontWeight: 600 }}>Total Patients</p>
+                <p style={{ fontSize: '1.3rem', fontWeight: 700, color: '#0369a1', marginTop: '4px', margin: 0 }}>
+                  {Object.values(queueSnapshot).reduce((acc, curr) => acc + (curr?.length || 0), 0)}
+                </p>
+              </div>
+              {Object.entries(queueSnapshot).map(([status, items]) => (
+                <div key={status} style={{ padding: '12px 16px', background: '#f1f5f9', border: '1px solid #e2e8f0', borderRadius: '8px', textAlign: 'center' }}>
+                  <p style={{ fontSize: '0.75rem', color: '#64748b', textTransform: 'uppercase', margin: 0, fontWeight: 600 }}>{status}</p>
+                  <p style={{ fontSize: '1.3rem', fontWeight: 700, color: '#0f172a', marginTop: '4px', margin: 0 }}>{items?.length || 0}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Tabs */}
         <div style={{ display: 'flex', borderBottom: '1px solid #e2e8f0', gap: '16px', marginBottom: '24px' }}>
           <button 
@@ -616,26 +637,7 @@ export default function DoctorDashboard({ onLogout }) {
               </div>
             )}
 
-            {/* General Queue Summary Breakdown */}
-            {queueSnapshot && (
-              <div style={{ marginTop: '30px' }}>
-                <h4 style={{ color: '#0f172a', fontSize: '1rem', marginBottom: '12px', fontWeight: 700 }}>Today's Queue Summary</h4>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '12px' }}>
-                  <div style={{ padding: '12px 16px', background: '#e0f2fe', border: '1px solid #bae6fd', borderRadius: '8px', textAlign: 'center' }}>
-                    <p style={{ fontSize: '0.75rem', color: '#0369a1', textTransform: 'uppercase', margin: 0, fontWeight: 600 }}>Total Patients</p>
-                    <p style={{ fontSize: '1.3rem', fontWeight: 700, color: '#0369a1', marginTop: '4px', margin: 0 }}>
-                      {Object.values(queueSnapshot).reduce((acc, curr) => acc + (curr?.length || 0), 0)}
-                    </p>
-                  </div>
-                  {Object.entries(queueSnapshot).map(([status, items]) => (
-                    <div key={status} style={{ padding: '12px 16px', background: '#f1f5f9', border: '1px solid #e2e8f0', borderRadius: '8px', textAlign: 'center' }}>
-                      <p style={{ fontSize: '0.75rem', color: '#64748b', textTransform: 'uppercase', margin: 0, fontWeight: 600 }}>{status}</p>
-                      <p style={{ fontSize: '1.3rem', fontWeight: 700, color: '#0f172a', marginTop: '4px', margin: 0 }}>{items?.length || 0}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+
           </div>
         )}
 

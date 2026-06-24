@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { api, getMediaUrl } from '../../services/api';
 import { 
   LogOut, Shield, Users, Clipboard, CheckCircle, 
-  RefreshCw, AlertCircle, Calendar, UserPlus, X
+  RefreshCw, AlertCircle, Calendar, UserPlus, X, PlusCircle
 } from 'lucide-react';
 import '../PatientPortal/PatientPortal.css';
 
@@ -21,7 +21,7 @@ export default function AdminDashboard({ onLogout }) {
   const [doctorRoom, setDoctorRoom] = useState('');
   const [doctorSessions, setDoctorSessions] = useState(20);
   const [systemAppointments, setSystemAppointments] = useState([]);
-  const [adminTab, setAdminTab] = useState('onboard'); // 'onboard' | 'control' | 'accounts'
+  const [adminTab, setAdminTab] = useState('onboard'); // 'onboard' | 'department' | 'control' | 'accounts'
 
   // New Department States
   const [newDeptName, setNewDeptName] = useState('');
@@ -441,279 +441,291 @@ export default function AdminDashboard({ onLogout }) {
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f8fafc' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', background: '#f8fafc' }}>
       
-      {/* Header Bar */}
-      <header style={{ 
+      {/* Sidebar Navigation */}
+      <aside style={{ 
+        width: '260px', 
         background: '#1e293b', 
-        padding: '16px 24px', 
+        color: '#fff', 
         display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center',
-        boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+        flexDirection: 'column', 
+        flexShrink: 0,
+        boxShadow: '4px 0 10px rgba(0,0,0,0.1)'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <Shield size={24} style={{ color: '#fff' }} />
-          <span style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff', fontFamily: 'sans-serif' }}>
-            Admin Console Workspace
+        {/* Sidebar Brand / Console */}
+        <div style={{ 
+          padding: '24px 20px', 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '10px', 
+          borderBottom: '1px solid rgba(255,255,255,0.1)' 
+        }}>
+          <Shield size={24} style={{ color: '#38bdf8' }} />
+          <span style={{ fontSize: '1.15rem', fontWeight: 700, fontFamily: 'sans-serif' }}>
+            Admin Console
           </span>
         </div>
-        
+
+        {/* Sidebar Menu Items */}
+        <nav style={{ flex: 1, padding: '20px 12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <button 
+            type="button"
+            className={`admin-sidebar-nav-btn ${adminTab === 'onboard' ? 'active' : ''}`}
+            onClick={() => { setAdminTab('onboard'); setError(''); setSuccess(''); }}
+          >
+            <UserPlus size={18} />
+            <span>Onboard New Doctor</span>
+          </button>
+
+          <button 
+            type="button"
+            className={`admin-sidebar-nav-btn ${adminTab === 'department' ? 'active' : ''}`}
+            onClick={() => { setAdminTab('department'); setError(''); setSuccess(''); }}
+          >
+            <PlusCircle size={18} />
+            <span>Start New Department</span>
+          </button>
+
+          <button 
+            type="button"
+            className={`admin-sidebar-nav-btn ${adminTab === 'control' ? 'active' : ''}`}
+            onClick={() => { setAdminTab('control'); fetchDoctorsList(); setError(''); setSuccess(''); }}
+          >
+            <Calendar size={18} />
+            <span>Queue Control Center</span>
+          </button>
+
+          <button 
+            type="button"
+            className={`admin-sidebar-nav-btn ${adminTab === 'accounts' ? 'active' : ''}`}
+            onClick={() => { setAdminTab('accounts'); fetchDoctorsList(); setSearchResult(null); setSearchQuery(''); setError(''); setSuccess(''); setSearchError(''); }}
+          >
+            <Users size={18} />
+            <span>Manage Portal Accounts</span>
+          </button>
+        </nav>
+
+        {/* Sidebar Footer / Admin User Profile Info & Logout */}
         {adminUser && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <span style={{ color: '#cbd5e1', fontSize: '0.9rem', fontWeight: 500 }}>
-              Administrator: {adminUser.name}
-            </span>
-            <button className="btn-logout-header" onClick={handleLogoutClick} title="Logout">
-              <LogOut size={18} />
+          <div className="admin-sidebar-footer" style={{ 
+            padding: '16px 20px', 
+            borderTop: '1px solid rgba(255,255,255,0.1)', 
+            display: 'flex', 
+            flexDirection: 'column',
+            gap: '12px' 
+          }}>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span className="logged-in-label" style={{ fontSize: '0.8rem' }}>Logged in as</span>
+              <span style={{ fontSize: '0.85rem', fontWeight: 600, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {adminUser.name}
+              </span>
+            </div>
+            <button 
+              className="btn" 
+              onClick={handleLogoutClick}
+              style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                gap: '8px', 
+                width: '100%', 
+                padding: '8px', 
+                fontSize: '0.8rem', 
+                background: '#dc2626', 
+                color: '#fff', 
+                border: 'none', 
+                borderRadius: '6px', 
+                cursor: 'pointer',
+                fontWeight: 600
+              }}
+            >
+              <LogOut size={14} />
+              <span>Logout</span>
             </button>
           </div>
         )}
-      </header>
+      </aside>
 
-      {/* Main Content */}
-      <main style={{ maxWidth: '1000px', margin: '30px auto', padding: '0 20px' }}>
-        
-        {error && (
-          <div className="alert-toast alert-toast-error" style={{ marginBottom: '20px' }}>
-            <AlertCircle size={18} />
-            <span>{error}</span>
+      {/* Main Content Area */}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflowY: 'auto' }}>
+        {/* Header Bar */}
+        <header 
+          className="admin-dashboard-header"
+          style={{ 
+            padding: '16px 30px', 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center'
+          }}
+        >
+          <h2 style={{ fontSize: '1.25rem', fontWeight: 700, margin: 0 }}>
+            {adminTab === 'onboard' && 'Onboard New Doctor'}
+            {adminTab === 'department' && 'Start New Department'}
+            {adminTab === 'control' && 'Queue Control Center'}
+            {adminTab === 'accounts' && 'Manage Portal Accounts'}
+          </h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <span className="status-label" style={{ fontSize: '0.85rem' }}>Workspace Status:</span>
+            <span style={{ fontSize: '0.75rem', padding: '4px 8px', background: '#ecfdf5', color: '#065f46', borderRadius: '50px', fontWeight: 600 }}>Active</span>
           </div>
-        )}
-        {success && (
-          <div className="alert-toast alert-toast-success" style={{ marginBottom: '20px' }}>
-            <CheckCircle size={18} />
-            <span>{success}</span>
-          </div>
-        )}
+        </header>
 
-        {/* Sliding Menu Tabs selector */}
-        <div style={{ 
-          display: 'flex', 
-          background: '#e2e8f0', 
-          borderRadius: '10px', 
-          padding: '4px', 
-          marginBottom: '24px', 
-          border: '1px solid #cbd5e1',
-          position: 'relative',
-          maxWidth: '550px'
-        }}>
-          <div 
-            style={{
-              position: 'absolute',
-              top: '4px',
-              bottom: '4px',
-              left: adminTab === 'onboard' ? '4px' : adminTab === 'control' ? 'calc(33.33% + 2px)' : 'calc(66.66% + 2px)',
-              width: 'calc(33.33% - 6px)',
-              background: '#ffffff',
-              borderRadius: '8px',
-              boxShadow: '0 2px 8px rgba(15, 23, 42, 0.08)',
-              transition: 'left 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              zIndex: 1
-            }}
-          />
-          <button 
-            type="button"
-            className="btn"
-            style={{ 
-              flex: 1,
-              borderRadius: '8px', 
-              padding: '10px 12px', 
-              background: 'transparent', 
-              border: 'none',
-              color: adminTab === 'onboard' ? '#0f172a' : '#64748b',
-              fontWeight: 700,
-              cursor: 'pointer',
-              fontSize: '0.85rem',
-              zIndex: 2,
-              position: 'relative',
-              boxShadow: 'none'
-            }}
-            onClick={() => { setAdminTab('onboard'); setError(''); setSuccess(''); }}
-          >
-            Onboard New Doctor
-          </button>
-          <button 
-            type="button"
-            className="btn"
-            style={{ 
-              flex: 1,
-              borderRadius: '8px', 
-              padding: '10px 12px', 
-              background: 'transparent', 
-              border: 'none',
-              color: adminTab === 'control' ? '#0f172a' : '#64748b',
-              fontWeight: 700,
-              cursor: 'pointer',
-              fontSize: '0.85rem',
-              zIndex: 2,
-              position: 'relative',
-              boxShadow: 'none'
-            }}
-            onClick={() => { setAdminTab('control'); fetchDoctorsList(); setError(''); setSuccess(''); }}
-          >
-            Queue Control Center
-          </button>
-          <button 
-            type="button"
-            className="btn"
-            style={{ 
-              flex: 1,
-              borderRadius: '8px', 
-              padding: '10px 12px', 
-              background: 'transparent', 
-              border: 'none',
-              color: adminTab === 'accounts' ? '#0f172a' : '#64748b',
-              fontWeight: 700,
-              cursor: 'pointer',
-              fontSize: '0.85rem',
-              zIndex: 2,
-              position: 'relative',
-              boxShadow: 'none'
-            }}
-            onClick={() => { setAdminTab('accounts'); fetchDoctorsList(); setSearchResult(null); setSearchQuery(''); setError(''); setSuccess(''); setSearchError(''); }}
-          >
-            Manage Portal Accounts
-          </button>
-        </div>
-
-        {/* Tab 1: Onboard Doctor */}
-        {adminTab === 'onboard' && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }} className="animate-form-fade">
-            
-            {/* Onboard Doctor Card */}
-            <div className="booking-wizard-card" style={{ padding: '28px' }}>
-              <h3 style={{ fontSize: '1.25rem', color: '#0f172a', fontWeight: 700, margin: '0 0 8px 0' }}>Register & Onboard Doctor Profile</h3>
-              <p className="wizard-sub" style={{ marginBottom: '24px' }}>Fill in professional credentials below to generate a new practitioner account.</p>
-
-              <form onSubmit={handleOnboardDoctor} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                <div className="input-row">
-                  <div className="form-field floating-group">
-                    <input 
-                      type="text" 
-                      placeholder=" " 
-                      value={doctorName} 
-                      onChange={(e) => setDoctorName(e.target.value)} 
-                      required
-                    />
-                    <label>Doctor Full Name</label>
-                  </div>
-
-                  <div className="form-field floating-group">
-                    <input 
-                      type="email" 
-                      placeholder=" " 
-                      value={doctorEmail} 
-                      onChange={(e) => setDoctorEmail(e.target.value)} 
-                      required
-                    />
-                    <label>Professional Email</label>
-                  </div>
-                </div>
-
-                <div className="form-field floating-group">
-                  <input 
-                    type="password" 
-                    placeholder=" " 
-                    value={doctorPassword} 
-                    onChange={(e) => setDoctorPassword(e.target.value)} 
-                    required
-                  />
-                  <label>Chamber Login Password</label>
-                </div>
-
-                <div className="input-row">
-                  <div className="form-field dynamic-dropdown-group" style={{ flex: 1 }}>
-                    <select 
-                      value={doctorDept} 
-                      onChange={(e) => setDoctorDept(e.target.value)} 
-                      className="custom-portal-select-input"
-                      required
-                    >
-                      <option value="" disabled hidden></option>
-                      {departments.map(dept => <option key={dept} value={dept}>{dept}</option>)}
-                    </select>
-                    <label className="floating-select-label">Medical Department</label>
-                    <div className="select-arrow-indicator" style={{ top: '14px' }}>▼</div>
-                  </div>
-
-                  <div className="form-field floating-group" style={{ flex: 1 }}>
-                    <input 
-                      type="text" 
-                      placeholder=" " 
-                      value={doctorRoom} 
-                      onChange={(e) => setDoctorRoom(e.target.value)} 
-                      required
-                    />
-                    <label>Room Allocation (e.g. Room 405)</label>
-                  </div>
-                </div>
-
-                <div className="form-field floating-group" style={{ maxWidth: '300px' }}>
-                  <input 
-                    type="number" 
-                    value={doctorSessions} 
-                    onChange={(e) => setDoctorSessions(e.target.value)} 
-                    min="1"
-                    required
-                  />
-                  <label>Maximum Daily Consulting Capacity</label>
-                </div>
-
-                <button type="submit" className="btn-primary" disabled={loading} style={{ background: '#0f172a', maxWidth: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                  <UserPlus size={18} />
-                  <span>{loading ? 'Creating Doctor Account...' : 'Onboard Doctor Account'}</span>
-                </button>
-              </form>
+        {/* Main Panel Content Container */}
+        <main style={{ flex: 1, padding: '30px', maxWidth: '1200px', width: '100%', margin: '0 auto' }}>
+          {error && (
+            <div className="alert-toast alert-toast-error" style={{ marginBottom: '20px' }}>
+              <AlertCircle size={18} />
+              <span>{error}</span>
             </div>
+          )}
+          {success && (
+            <div className="alert-toast alert-toast-success" style={{ marginBottom: '20px' }}>
+              <CheckCircle size={18} />
+              <span>{success}</span>
+            </div>
+          )}
 
-            {/* Start New Department Card */}
-            <div className="booking-wizard-card" style={{ padding: '28px' }}>
-              <h3 style={{ fontSize: '1.25rem', color: '#0f172a', fontWeight: 700, margin: '0 0 8px 0' }}>Start New Department</h3>
-              <p className="wizard-sub" style={{ marginBottom: '24px' }}>Add a new clinical department division to the hospital database.</p>
+          {/* Render Tab Contents */}
+          {adminTab === 'onboard' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }} className="animate-form-fade">
               
-              <form onSubmit={handleStartDepartment} className="admin-dept-form-row">
-                <div className="form-field floating-group">
-                  <input 
-                    type="text" 
-                    placeholder=" " 
-                    value={newDeptName} 
-                    onChange={(e) => setNewDeptName(e.target.value)} 
-                    required
-                  />
-                  <label>Department Name (e.g. Neurology)</label>
-                </div>
-                <button type="submit" className="btn-primary" disabled={loading}>
-                  Start Department
-                </button>
-              </form>
+              {/* Onboard Doctor Card */}
+              <div className="booking-wizard-card" style={{ padding: '28px' }}>
+                <h3 style={{ fontSize: '1.25rem', color: '#0f172a', fontWeight: 700, margin: '0 0 8px 0' }}>Register & Onboard Doctor Profile</h3>
+                <p className="wizard-sub" style={{ marginBottom: '24px' }}>Fill in professional credentials below to generate a new practitioner account.</p>
 
-              {/* List of current departments */}
-              <div style={{ marginTop: '24px' }}>
-                <h4 style={{ fontSize: '0.9rem', color: '#475569', fontWeight: 700, marginBottom: '10px' }}>Active Departments</h4>
-                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                  {departments.map((dept) => (
-                    <span 
-                      key={dept} 
-                      style={{ 
-                        fontSize: '0.75rem', 
-                        padding: '6px 12px', 
-                        background: '#f1f5f9', 
-                        border: '1px solid #cbd5e1', 
-                        borderRadius: '50px', 
-                        color: '#334155',
-                        fontWeight: 600
-                      }}
-                    >
-                      {dept}
-                    </span>
-                  ))}
+                <form onSubmit={handleOnboardDoctor} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                  <div className="input-row">
+                    <div className="form-field floating-group">
+                      <input 
+                        type="text" 
+                        placeholder=" " 
+                        value={doctorName} 
+                        onChange={(e) => setDoctorName(e.target.value)} 
+                        required
+                      />
+                      <label>Doctor Full Name</label>
+                    </div>
+
+                    <div className="form-field floating-group">
+                      <input 
+                        type="email" 
+                        placeholder=" " 
+                        value={doctorEmail} 
+                        onChange={(e) => setDoctorEmail(e.target.value)} 
+                        required
+                      />
+                      <label>Professional Email</label>
+                    </div>
+                  </div>
+
+                  <div className="form-field floating-group">
+                    <input 
+                      type="password" 
+                      placeholder=" " 
+                      value={doctorPassword} 
+                      onChange={(e) => setDoctorPassword(e.target.value)} 
+                      required
+                    />
+                    <label>Chamber Login Password</label>
+                  </div>
+
+                  <div className="input-row">
+                    <div className="form-field dynamic-dropdown-group" style={{ flex: 1 }}>
+                      <select 
+                        value={doctorDept} 
+                        onChange={(e) => setDoctorDept(e.target.value)} 
+                        className="custom-portal-select-input"
+                        required
+                      >
+                        <option value="" disabled hidden></option>
+                        {departments.map(dept => <option key={dept} value={dept}>{dept}</option>)}
+                      </select>
+                      <label className="floating-select-label">Medical Department</label>
+                      <div className="select-arrow-indicator" style={{ top: '14px' }}>▼</div>
+                    </div>
+
+                    <div className="form-field floating-group" style={{ flex: 1 }}>
+                      <input 
+                        type="text" 
+                        placeholder=" " 
+                        value={doctorRoom} 
+                        onChange={(e) => setDoctorRoom(e.target.value)} 
+                        required
+                      />
+                      <label>Room Allocation (e.g. Room 405)</label>
+                    </div>
+                  </div>
+
+                  <div className="form-field floating-group" style={{ maxWidth: '300px' }}>
+                    <input 
+                      type="number" 
+                      value={doctorSessions} 
+                      onChange={(e) => setDoctorSessions(e.target.value)} 
+                      min="1"
+                      required
+                    />
+                    <label>Maximum Daily Consulting Capacity</label>
+                  </div>
+
+                  <button type="submit" className="btn-primary" disabled={loading} style={{ background: '#0f172a', maxWidth: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                    <UserPlus size={18} />
+                    <span>{loading ? 'Creating Doctor Account...' : 'Onboard Doctor Account'}</span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {adminTab === 'department' && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }} className="animate-form-fade">
+              {/* Start New Department Card */}
+              <div className="booking-wizard-card" style={{ padding: '28px' }}>
+                <h3 style={{ fontSize: '1.25rem', color: '#0f172a', fontWeight: 700, margin: '0 0 8px 0' }}>Start New Department</h3>
+                <p className="wizard-sub" style={{ marginBottom: '24px' }}>Add a new clinical department division to the hospital database.</p>
+                
+                <form onSubmit={handleStartDepartment} className="admin-dept-form-row">
+                  <div className="form-field floating-group">
+                    <input 
+                      type="text" 
+                      placeholder=" " 
+                      value={newDeptName} 
+                      onChange={(e) => setNewDeptName(e.target.value)} 
+                      required
+                    />
+                    <label>Department Name (e.g. Neurology)</label>
+                  </div>
+                  <button type="submit" className="btn-primary" disabled={loading}>
+                    Start Department
+                  </button>
+                </form>
+
+                {/* List of current departments */}
+                <div style={{ marginTop: '24px' }}>
+                  <h4 style={{ fontSize: '0.9rem', color: '#475569', fontWeight: 700, marginBottom: '10px' }}>Active Departments</h4>
+                  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                    {departments.map((dept) => (
+                      <span 
+                        key={dept} 
+                        style={{ 
+                          fontSize: '0.75rem', 
+                          padding: '6px 12px', 
+                          background: '#f1f5f9', 
+                          border: '1px solid #cbd5e1', 
+                          borderRadius: '50px', 
+                          color: '#334155',
+                          fontWeight: 600
+                        }}
+                      >
+                        {dept}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-
-          </div>
-        )}
+          )}
 
         {/* Tab 3: Queue Control Center */}
         {adminTab === 'control' && (
@@ -1244,6 +1256,7 @@ export default function AdminDashboard({ onLogout }) {
         )}
 
       </main>
+      </div>
 
       {/* Patient Details & History Modal */}
       {showPatientModal && selectedPatientInfo && (

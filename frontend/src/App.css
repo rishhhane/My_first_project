@@ -288,3 +288,23 @@
   background-color: #000000 !important;
   border-color: #000000 !important;
 }
+
+/* Custom Staff Login Buttons */
+.landing-login-action-btn.btn-doctor {
+  background: #0d9488 !important;
+  box-shadow: 0 4px 10px rgba(13, 148, 136, 0.3) !important;
+}
+.landing-login-action-btn.btn-doctor:hover {
+  background: #0f766e !important;
+  box-shadow: 0 6px 15px rgba(15, 118, 110, 0.4) !important;
+}
+
+.landing-login-action-btn.btn-admin {
+  background: #1e293b !important;
+  box-shadow: 0 4px 10px rgba(30, 41, 59, 0.3) !important;
+}
+.landing-login-action-btn.btn-admin:hover {
+  background: #0f172a !important;
+  box-shadow: 0 6px 15px rgba(15, 23, 42, 0.4) !important;
+}
+

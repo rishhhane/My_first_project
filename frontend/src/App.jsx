@@ -43,20 +43,19 @@ function LandingPage() {
       )
     },
     {
-      portal: 'doctor',
-      headerTitle: 'DOCTOR PORTAL',
-      signupLabel: 'Doctor Signup',
-      signupPath: '/doctor/register',
-      tagline: 'Doctor Portal Technology in Healthcare',
-      title: 'Doctor Portal',
-      subtitle: 'Sample Healthcare Application',
-      description: 'Providing simple and secure access to our clinic web application with the facilities:',
+      portal: 'staff',
+      headerTitle: 'STAFF PORTALS',
+      tagline: 'Healthcare Management & Administration',
+      title: 'Doctor & Admin Portals',
+      subtitle: 'Clinical Operations Console',
+      description: 'Clinic dashboard facilities for administrators and medical practitioners:',
       bullets: [
         'Manage patient queues in real-time.',
         'Write digital prescriptions (Rx) securely.',
-        'Configure scheduling and availability.'
+        'Configure schedules and clinical departments.'
       ],
-      loginPath: '/doctor/login',
+      doctorLoginPath: '/doctor/login',
+      adminLoginPath: '/admin/login',
       illustration: (
         <svg width="100%" height="100%" viewBox="0 0 400 350" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="200" cy="175" r="140" fill="#ccfbf1" opacity="0.6" />
@@ -68,31 +67,6 @@ function LandingPage() {
           <circle cx="145" cy="90" r="6" fill="#1e293b" />
           <circle cx="255" cy="90" r="6" fill="#1e293b" />
           <path d="M200 130 C200 130, 215 110, 230 110 C245 110, 255 122, 255 137 C255 160, 200 190, 200 190 C200 190, 145 160, 145 137 C145 122, 155 110, 170 110 C185 110, 200 130, 200 130 Z" fill="#0f766e" stroke="#1e293b" strokeWidth="6" strokeLinejoin="round" />
-        </svg>
-      )
-    },
-    {
-      portal: 'admin',
-      headerTitle: 'ADMIN PORTAL',
-      signupLabel: 'Admin Signup',
-      signupPath: '/admin/register',
-      tagline: 'Admin Portal Technology in Healthcare',
-      title: 'Admin Portal',
-      subtitle: 'Sample Healthcare Application',
-      description: 'Providing simple and secure access to our clinic web application with the facilities:',
-      bullets: [
-        'Manage patient and doctor accounts.',
-        'Add new departments and clinics.',
-        'Monitor all appointments and schedules.'
-      ],
-      loginPath: '/admin/login',
-      illustration: (
-        <svg width="100%" height="100%" viewBox="0 0 400 350" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="200" cy="175" r="140" fill="#e0f2fe" opacity="0.6" />
-          <path d="M200 70 C240 70, 290 85, 290 130 C290 200, 200 270, 200 270 C200 270, 110 200, 110 130 C110 85, 160 70, 200 70 Z" fill="#0f2c59" stroke="#1e293b" strokeWidth="12" strokeLinejoin="round" />
-          <circle cx="200" cy="145" r="25" stroke="#ffffff" strokeWidth="8" fill="none" />
-          <path d="M190 170 H210 V210 H190 Z" fill="#ffffff" />
-          <circle cx="200" cy="190" r="5" fill="#0f2c59" />
         </svg>
       )
     }
@@ -126,9 +100,11 @@ function LandingPage() {
               {/* Slide Content Header */}
               <header className="landing-header">
                 <h1 className="landing-header-title">{slideItem.headerTitle}</h1>
-                <Link to={slideItem.signupPath} className="landing-signup-btn">
-                  {slideItem.signupLabel}
-                </Link>
+                {slideItem.signupPath && slideItem.signupLabel && (
+                  <Link to={slideItem.signupPath} className="landing-signup-btn">
+                    {slideItem.signupLabel}
+                  </Link>
+                )}
               </header>
 
               {/* Main Grid Section */}
@@ -154,9 +130,28 @@ function LandingPage() {
                     ))}
                   </ul>
 
-                  <Link to={slideItem.loginPath} className="landing-login-action-btn">
-                    LOGIN
-                  </Link>
+                  {slideItem.portal === 'patient' ? (
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '10px', marginTop: '16px' }}>
+                      <p style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600, margin: 0 }}>SCAN TO REGISTER & JOIN QUEUE:</p>
+                      <Link to={slideItem.loginPath} className="landing-qr-link" style={{ background: '#fff', padding: '12px', borderRadius: '12px', border: '1px solid #cbd5e1', display: 'inline-block', boxShadow: '0 4px 12px rgba(15,23,42,0.05)', transition: 'transform 0.2s' }}>
+                        <img 
+                          src="/patient_portal_qr.png" 
+                          alt="Patient Portal QR Code" 
+                          style={{ width: '130px', height: '130px', display: 'block' }} 
+                        />
+                      </Link>
+                      <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>Or click the QR code to open directly</span>
+                    </div>
+                  ) : (
+                    <div style={{ display: 'flex', gap: '16px', marginTop: '16px', flexWrap: 'wrap' }}>
+                      <Link to={slideItem.doctorLoginPath} className="landing-login-action-btn btn-doctor">
+                        DOCTOR LOGIN
+                      </Link>
+                      <Link to={slideItem.adminLoginPath} className="landing-login-action-btn btn-admin">
+                        ADMIN LOGIN
+                      </Link>
+                    </div>
+                  )}
                 </div>
 
                 {/* Right Illustration column */}

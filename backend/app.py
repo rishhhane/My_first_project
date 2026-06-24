@@ -104,7 +104,22 @@ def create_app():
     @app.route('/static/<path:path>')
     def serve_backend_static(path):
         backend_static_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'static'))
+        full_path = os.path.join(backend_static_dir, path)
+        if not os.path.exists(full_path):
+            ext = os.path.splitext(path)[1].lower()
+            if ext in ['.jpg', '.jpeg', '.png', '.webp', '.gif']:
+                return send_from_directory(backend_static_dir, 'default-avatar.png')
         return send_from_directory(backend_static_dir, path)
+
+    # Serve uploads directly to handle database paths like 'uploads/photos/...'
+    @app.route('/uploads/<path:path>')
+    def serve_backend_uploads(path):
+        backend_static_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'static'))
+        backend_uploads_dir = os.path.join(backend_static_dir, 'uploads')
+        full_path = os.path.join(backend_uploads_dir, path)
+        if not os.path.exists(full_path):
+            return send_from_directory(backend_static_dir, 'default-avatar.png')
+        return send_from_directory(backend_uploads_dir, path)
 
     # SPA catch-all routing: serve React index.html for non-API routes
     @app.route('/', defaults={'path': ''})

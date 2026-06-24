@@ -6,7 +6,7 @@ class UploadService:
     # 1. Define strict security configurations
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp'}
     MAX_FILE_SIZE = 5 * 1024 * 1024  # 5 Megabytes limit constraint
-    UPLOAD_FOLDER = os.path.join('static', 'uploads', 'avatars')
+    UPLOAD_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'static', 'uploads', 'avatars'))
 
     @classmethod
     def allowed_file(cls, filename):
