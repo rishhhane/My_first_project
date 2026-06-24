@@ -504,7 +504,7 @@ export default function PatientDashboard({ onLogout }) {
                   </div>
                   <div>
                     <span style={{ color: '#64748b', display: 'block', fontSize: '0.75rem' }}>Consultation Date</span>
-                    <strong>{selectedVisitDetails.appointment_date}</strong>
+                    <strong style={{ whiteSpace: 'nowrap' }}>{selectedVisitDetails.appointment_date}</strong>
                   </div>
                   <div>
                     <span style={{ color: '#64748b', display: 'block', fontSize: '0.75rem' }}>Status</span>
@@ -614,7 +614,7 @@ export default function PatientDashboard({ onLogout }) {
                   </span>
 
                   <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '0 0 4px 0', textAlign: 'left' }}>Doctor: <strong>{activeAppointment.doctor_name}</strong> ({activeAppointment.department})</p>
-                  <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '0 0 12px 0', textAlign: 'left' }}>Date: {activeAppointment.appointment_date}</p>
+                  <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '0 0 12px 0', textAlign: 'left' }}>Date: <span style={{ whiteSpace: 'nowrap' }}>{activeAppointment.appointment_date}</span></p>
 
                   <h1 style={{ fontSize: '3.5rem', fontWeight: 800, color: '#0f172a', margin: '0 0 16px 0', lineHeight: 1 }}>
                     #{activeAppointment.queue_position}
@@ -696,18 +696,38 @@ export default function PatientDashboard({ onLogout }) {
                   )}
 
                   {/* Date picker */}
-                  <div className="form-field floating-group" style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                    <div style={{ flex: 1, position: 'relative' }}>
+                  <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '20px', width: '100%' }}>
+                    <div style={{ flex: 1 }}>
                       <input 
                         type="date" 
                         value={bookingDate} 
                         onChange={(e) => { setBookingDate(e.target.value); setCapacityInfo(null); }}
                         min={new Date().toISOString().split('T')[0]}
                         required
-                        style={{ height: '42px', padding: '10px 14px' }}
+                        className="form-input"
+                        style={{ height: '48px', padding: '10px 14px', boxSizing: 'border-box' }}
                       />
                     </div>
-                    <button type="button" className="btn" style={{ background: '#f1f5f9', border: '1px solid #cbd5e1', padding: '10px 14px', color: '#1e293b', fontSize: '0.85rem', height: '42px', borderRadius: '8px', cursor: 'pointer' }} onClick={checkSlotCapacity} disabled={!selectedDoctor || !bookingDate}>
+                    <button 
+                      type="button" 
+                      className="btn" 
+                      style={{ 
+                        background: '#f1f5f9', 
+                        border: '1px solid #cbd5e1', 
+                        padding: '10px 16px', 
+                        color: '#1e293b', 
+                        fontSize: '0.9rem', 
+                        height: '48px', 
+                        borderRadius: '6px', 
+                        cursor: 'pointer',
+                        whiteSpace: 'nowrap',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }} 
+                      onClick={checkSlotCapacity} 
+                      disabled={!selectedDoctor || !bookingDate}
+                    >
                       Check Slots
                     </button>
                   </div>

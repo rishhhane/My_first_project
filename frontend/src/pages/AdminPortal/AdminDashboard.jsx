@@ -1333,7 +1333,7 @@ export default function AdminDashboard({ onLogout }) {
                           <strong>{visit.doctor_name}</strong>
                           <span style={{ fontSize: '0.75rem', color: '#64748b', marginLeft: '6px' }}>({visit.department})</span>
                         </div>
-                        <span style={{ fontSize: '0.8rem', color: '#64748b' }}>Date: {new Date(visit.visit_date).toLocaleDateString()}</span>
+                        <span style={{ fontSize: '0.8rem', color: '#64748b', whiteSpace: 'nowrap' }}>Date: {new Date(visit.visit_date).toLocaleDateString()}</span>
                       </div>
                       <p style={{ fontSize: '0.85rem', margin: '4px 0 8px 0', color: '#334155', textAlign: 'left' }}>
                         <strong>Reason for Visit:</strong> {visit.reason}
