@@ -697,17 +697,15 @@ export default function PatientDashboard({ onLogout }) {
 
                   {/* Date picker */}
                   <div style={{ display: 'flex', gap: '10px', alignItems: 'center', marginBottom: '20px', width: '100%' }}>
-                    <div style={{ flex: 1 }}>
-                      <input 
-                        type="date" 
-                        value={bookingDate} 
-                        onChange={(e) => { setBookingDate(e.target.value); setCapacityInfo(null); }}
-                        min={new Date().toISOString().split('T')[0]}
-                        required
-                        className="form-input"
-                        style={{ height: '48px', padding: '10px 14px', boxSizing: 'border-box' }}
-                      />
-                    </div>
+                    <input 
+                      type="date" 
+                      value={bookingDate} 
+                      onChange={(e) => { setBookingDate(e.target.value); setCapacityInfo(null); }}
+                      min={new Date().toISOString().split('T')[0]}
+                      required
+                      className="form-input"
+                      style={{ height: '48px', padding: '10px 14px', flex: 1, minWidth: 0, boxSizing: 'border-box' }}
+                    />
                     <button 
                       type="button" 
                       className="btn" 
@@ -788,7 +786,7 @@ export default function PatientDashboard({ onLogout }) {
                             <strong>{visit.doctor_name}</strong>
                             <span className="table-dept-sub">{visit.department}</span>
                           </div>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
                             <span className={`badge badge-${visit.status}`} style={{ 
                               fontSize: '0.65rem', 
                               padding: '3px 6px', 
@@ -800,7 +798,7 @@ export default function PatientDashboard({ onLogout }) {
                             <button 
                               type="button" 
                               className="btn-view-details" 
-                              style={{ padding: '4px 8px', fontSize: '0.7rem' }}
+                              style={{ padding: '4px 8px', fontSize: '0.7rem', flexShrink: 0 }}
                             >
                               View
                             </button>

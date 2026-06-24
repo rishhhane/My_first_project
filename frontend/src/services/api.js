@@ -5,8 +5,12 @@ export const getMediaUrl = (path) => {
   if (path.startsWith('http://') || path.startsWith('https://')) {
     return path;
   }
+  const cleanPath = path.startsWith('/') ? path.substring(1) : path;
   const backendHost = BASE_URL.replace(/\/api$/, '').replace(/\/$/, '');
-  return `${backendHost}/${path}`;
+  if (!backendHost) {
+    return `/${cleanPath}`;
+  }
+  return `${backendHost}/${cleanPath}`;
 };
 
 const getHeaders = (portal) => {

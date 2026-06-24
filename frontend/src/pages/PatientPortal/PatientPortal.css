@@ -1407,3 +1407,10 @@ header, .patient-dashboard-header, .patient-dashboard-header-inner {
   color: #94a3b8 !important;
 }
 
+@media (max-width: 480px) {
+  .minimal-history-row-header {
+    padding: 12px 10px !important;
+    gap: 8px !important;
+  }
+}
+
