@@ -869,7 +869,6 @@ export default function AdminDashboard({ onLogout }) {
                         <th style={{ padding: '12px' }}>Patient Name</th>
                         <th style={{ padding: '12px' }}>Queue Pos</th>
                         <th style={{ padding: '12px' }}>Status</th>
-                        <th style={{ padding: '12px', textAlign: 'right' }}>Actions</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -893,60 +892,6 @@ export default function AdminDashboard({ onLogout }) {
                               background: appt.status === 'called' ? '#CCFBF1' : '#FEF3C7',
                               color: appt.status === 'called' ? '#0F766E' : '#B45309'
                             }}>{appt.status}</span>
-                          </td>
-                          <td style={{ padding: '12px', textAlign: 'right' }}>
-                            <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
-                              {(appt.status === 'pending' || appt.status === 'called') && (
-                                <button 
-                                  onClick={() => handleAdminCallout(appt.appointment_id)}
-                                  style={{ 
-                                    padding: '6px 12px', 
-                                    fontSize: '0.8rem', 
-                                    background: appt.status === 'called' ? '#e11d48' : '#0f766e', 
-                                    color: '#fff', 
-                                    border: 'none', 
-                                    borderRadius: '6px', 
-                                    cursor: 'pointer',
-                                    fontWeight: 600
-                                  }}
-                                  title={appt.status === 'called' ? 'Click again to cancel appointment' : ''}
-                                >
-                                  {appt.status === 'called' ? 'Call Out Again (Cancel)' : 'Call Out'}
-                                </button>
-                              )}
-                              <button 
-                                onClick={() => handleAdminSkip(appt.appointment_id)}
-                                style={{ 
-                                  padding: '6px 12px', 
-                                  fontSize: '0.8rem', 
-                                  background: '#fff', 
-                                  border: '1px solid #fca5a5', 
-                                  color: '#f43f5e', 
-                                  borderRadius: '6px', 
-                                  cursor: 'pointer',
-                                  fontWeight: 600
-                                }}
-                              >
-                                Skip
-                              </button>
-                              {appt.status === 'called' && (
-                                <button 
-                                  onClick={() => handleAdminComplete(appt.appointment_id)}
-                                  style={{ 
-                                    padding: '6px 12px', 
-                                    fontSize: '0.8rem', 
-                                    background: '#16a34a', 
-                                    color: '#fff', 
-                                    border: 'none', 
-                                    borderRadius: '6px', 
-                                    cursor: 'pointer',
-                                    fontWeight: 600
-                                  }}
-                                >
-                                  Complete
-                                </button>
-                              )}
-                            </div>
                           </td>
                         </tr>
                       ))}

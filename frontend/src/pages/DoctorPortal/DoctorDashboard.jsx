@@ -353,21 +353,38 @@ export default function DoctorDashboard({ onLogout }) {
               </p>
             </div>
             
-            <button 
-              className="btn"
-              style={{
-                background: doctorStatus === 'IN' ? '#10b981' : '#f43f5e',
-                color: '#fff',
-                fontWeight: 700,
-                padding: '10px 20px',
-                borderRadius: '8px',
-                border: 'none',
-                cursor: 'pointer'
-              }}
-              onClick={handleToggleAttendance}
-            >
-              {doctorStatus === 'IN' ? '🟢 Checked IN' : '🔴 Checked OUT'}
-            </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <span style={{ fontSize: '0.9rem', fontWeight: 600, color: '#475569' }}>
+                Status: <strong style={{ color: doctorStatus === 'IN' ? '#10b981' : '#f43f5e' }}>{doctorStatus === 'IN' ? 'Checked IN' : 'Checked OUT'}</strong>
+              </span>
+              <div 
+                onClick={handleToggleAttendance}
+                style={{
+                  width: '56px',
+                  height: '28px',
+                  backgroundColor: doctorStatus === 'IN' ? '#10b981' : '#cbd5e1',
+                  borderRadius: '14px',
+                  padding: '2px',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  transition: 'background-color 0.3s ease',
+                  boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)'
+                }}
+              >
+                <div 
+                  style={{
+                    width: '24px',
+                    height: '24px',
+                    backgroundColor: '#ffffff',
+                    borderRadius: '50%',
+                    transform: doctorStatus === 'IN' ? 'translateX(28px)' : 'translateX(0px)',
+                    transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                  }}
+                />
+              </div>
+            </div>
           </div>
         </div>
 

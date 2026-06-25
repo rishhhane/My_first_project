@@ -84,7 +84,7 @@ def active_queue(doctor_id):
  
 @queue_bp.route("/<int:appointment_id>/callout", methods=["PUT"])
 @jwt_required_guard()
-@roles_allowed("doctor", "admin")
+@roles_allowed("doctor")
 def callout(appointment_id):
     """PUT /api/queue/<appointment_id>/callout"""
     from flask import g
@@ -124,7 +124,7 @@ def complete(appointment_id):
  
 @queue_bp.route("/<int:appointment_id>/skip", methods=["PUT"])
 @jwt_required_guard()
-@roles_allowed("doctor", "admin")
+@roles_allowed("doctor")
 def skip(appointment_id):
     """PUT /api/queue/<appointment_id>/skip"""
     from flask import g
